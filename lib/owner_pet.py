@@ -1,10 +1,12 @@
 class Pet:
-    PET_TYPES = ['dog', 'cat','bird', 'exotic', 'reptile', 'rodent']
-
+    
+    PET_TYPES = ['dog', 'cat', 'rodent', 'bird', 'reptile', 'exotic']
+    
     all = []
-    def __init__(self, name, species, pet_type, owner=None):
+
+    def __init__(self, name, pet_type, owner=None):
         if pet_type not in Pet.PET_TYPES:
-         raise ValueError(f"Invalid pet type: {pet_type}. Must be one of {Pet.PET_TYPES}.")
+            raise ValueError(f"Invalid pet type: {pet_type}. Must be one of {Pet.PET_TYPES}.")
         
         self.name = name
         self.pet_type = pet_type
@@ -16,15 +18,13 @@ class Pet:
         Pet.all.append(self)
 
 
-    pass
-
 class Owner:
     def __init__(self, name):
         self.name = name
-        self.pets = []
+        self._pets = []  
 
-    def pets(self, pet):
-        return  self.pets
+    def pets(self):
+        return self._pets
 
     def add_pet(self, pet):
         if not isinstance(pet, Pet):
